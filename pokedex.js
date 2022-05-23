@@ -1,10 +1,4 @@
-/*
-*   element.addEventListener("click", function() {});
-*
-*
-*
-*
-* */
+
 document.getElementById("searchButton").addEventListener("click", function () {
     document.getElementById("abilities").innerHTML = "";
     document.getElementById("moves").innerHTML = "";
@@ -19,64 +13,70 @@ function displayPokemon(data) {
     const moves = data.moves;
 
     document.getElementById("image").src = pokemonImg;
-    // let row = document.getElementById("poketable").insertRow(-1);
-    // let cell1 = row.insertCell(0);
-    // let cell2 = row.insertCell(1);
-    // let cell3 = row.insertCell(2);
-    // let cell4 = row.insertCell(3);
-    DisplayData("id", pokemonID);
-    // cell1.innerHTML = pokemonID;
-    // alert(abilities.length);
-
-    // if abilities.length is larger than moves.length then run for loop that many times and check if the other value is empty
-    if (abilities.length > moves.length) {
-        // loopAbilities;
-        for (let i = 0; i < abilities.length; i++) {
-            let abilty = abilities[i].ability.name;
-            let move = moves[i].move.name;
-            console.log(i);
-            console.log(abilty);
-
-            DisplayData("abilities", abilty, false);
-            let row = document.getElementById("poketable").insertRow(-1);
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            cell1.innerHTML = pokemonID;
-            cell2.innerHTML += abilty;
-            cell3.innerHTML += move;
-        }
-    } else {
-        // loopmoves;
-        for (let i = 0; i < moves.length; i++) {
-            let abilty = abilities[i].ability.name;
-            let move = moves[i].move.name;
-            console.log(i);
-            console.log(move);
-            DisplayData("moves", move, false);
-            let row = document.getElementById("poketable").insertRow(-1);
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            cell1.innerHTML = pokemonID;
-            cell2.innerHTML += abilty;
-            cell3.innerHTML += move;
-        }
-    }
-}
-
-function addRowData(cell = cell2, ID, abilitiy, move) {
-    let row = document.getElementById("poketable").insertRow(-1);
+    let table = document.getElementById("poketable");
+    let row = table.insertRow(-1);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
+    // DisplayData("id", pokemonID);
+    addRowData("cell1", pokemonID);
 
-    cell1.innerHTML = "";
-    cell2.innerHTML = data;
-    cell3.innerHTML = "";
-    cell4.innerHTML = "";
+    console.log(abilities.length + " " + moves.length);
+    // loopAbilities;
+    for (let i = 0; i < abilities.length; i++) {
+        let ability = abilities[i].ability.name;
+        console.log(i);
+        console.log(ability);
 
+        // DisplayData("abilities", ability, false);
+        addRowData("cell2", ability);
+
+    }
+    // loopmoves;
+    for (let i = 0; i < moves.length; i++) {
+        let move = moves[i].move.name;
+        console.log(i);
+        console.log(move);
+        // DisplayData("moves", move, false);
+        addRowData("cell3", move);
+    }
+}
+
+function addRowData(cell, cellData) {
+    let table = document.getElementById("poketable");
+
+    let row = table.insertRow(-1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    switch (cell){
+        case "cell1":
+            cell1.innerHTML = cellData;
+            cell2.innerHTML = "";
+            cell3.innerHTML = "";
+            cell4.innerHTML = "";
+            break;
+        case "cell2":
+            cell1.innerHTML = "";
+            cell2.innerHTML = cellData;
+            cell3.innerHTML = "";
+            cell4.innerHTML = "";
+            break;
+        case "cell3":
+            cell1.innerHTML = "";
+            cell2.innerHTML = "";
+            cell3.innerHTML = cellData;
+            cell4.innerHTML = "";
+            break;
+        case "cell4":
+            cell1.innerHTML = "";
+            cell2.innerHTML = "";
+            cell3.innerHTML = "";
+            cell4.innerHTML = "";
+            break;
+    }
 }
 
 function DisplayData(elementID, data, dataFlush = true) {
