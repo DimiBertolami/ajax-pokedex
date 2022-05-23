@@ -13,12 +13,6 @@ function displayPokemon(data) {
     const moves = data.moves;
 
     document.getElementById("image").src = pokemonImg;
-    let table = document.getElementById("poketable");
-    let row = table.insertRow(-1);
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
     // DisplayData("id", pokemonID);
     addRowData("cell1", pokemonID);
 
@@ -47,11 +41,24 @@ function addRowData(cell, cellData) {
     let table = document.getElementById("poketable");
     let bodyRef = table.getElementsByTagName('tbody')[0];
     bodyRef.innerHTML = '';
-    let row = table.insertRow(-1);
+    let header = table.createTHead();
+    let row = header.insertRow(-1);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
     let cell4 = row.insertCell(3);
+    if(cell==="cell1"){
+
+    }
+    if(cell==="cell2"){
+
+    }
+    if(cell==="cell3"){
+
+    }
+    if(cell==="cell4"){
+
+    }
     switch (cell){
         case "cell1":
             cell1.innerHTML = cellData;
