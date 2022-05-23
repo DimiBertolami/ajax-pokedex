@@ -1,9 +1,15 @@
-// getName("pikachu")
-document.getElementById("searchButton").addEventListener("click", RunSearch);
-
-function RunSearch(){
+/*
+*   element.addEventListener("click", function() {});
+*
+*
+*
+*
+* */
+document.getElementById("searchButton").addEventListener("click", function() {
+    document.getElementById("abilities").innerHTML = "";
+    document.getElementById("moves").innerHTML = "";
     getName(document.getElementById("Name").value);
-}
+});
 
 function displayPokemon(data) {
     const pokemonImg = data.sprites.front_default;
@@ -32,15 +38,6 @@ function displayPokemon(data) {
         DisplayData("moves", move, false);
     }
 }
-
-// function loopArray(array, property){
-//     for (let i = 0; i < array.length; i++) {
-//         let tempData = property;
-//         console.log(i);
-//         console.log(tempData);
-//         // DisplayData("moves", move, false);
-//     }
-// }
 
 function DisplayData(elementID, data, dataFlush = true){
     if(dataFlush){document.getElementById(elementID).innerHTML = ""}
