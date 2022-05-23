@@ -45,7 +45,8 @@ function displayPokemon(data) {
 
 function addRowData(cell, cellData) {
     let table = document.getElementById("poketable");
-
+    let bodyRef = table.getElementsByTagName('tbody')[0];
+    bodyRef.innerHTML = '';
     let row = table.insertRow(-1);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
