@@ -5,19 +5,45 @@ function RunSearch(){
     getName(document.getElementById("Name").value);
 }
 
-
 function displayPokemon(data) {
     const pokemonImg = data.sprites.front_default;
     const pokemonID = data.id;
     const pokemonName = data.name;
-    const abilities = `${data.abilities[0].ability.name}, ${data.abilities[1].ability.name}`;
+    const abilities = data.abilities;
+    const moves = data.moves;
+
     document.getElementById("image").src = pokemonImg;
     DisplayData("id", pokemonID);
     DisplayData("pokemonName", pokemonName);
-    DisplayData("abilities", abilities);
+    // alert(abilities.length);
+
+    // loopAbilities;
+    for (let i = 0; i < abilities.length; i++) {
+        let abilty = abilities[i].ability.name;
+        console.log(i);
+        console.log(abilty);
+        DisplayData("abilities", abilty, false);
+    }
+    // loopmoves;
+    for (let i = 0; i < moves.length; i++) {
+        let move = moves[i].move.name;
+        console.log(i);
+        console.log(move);
+        DisplayData("moves", move, false);
+    }
 }
 
-function DisplayData(elementID, data){
+// function loopArray(array, property){
+//     for (let i = 0; i < array.length; i++) {
+//         let tempData = property;
+//         console.log(i);
+//         console.log(tempData);
+//         // DisplayData("moves", move, false);
+//     }
+// }
+
+function DisplayData(elementID, data, dataFlush = true){
+    if(dataFlush){document.getElementById(elementID).innerHTML = ""}
     element = document.getElementById(elementID);
     h1 = document.createElement("h1");
     h1.innerHTML = data;
