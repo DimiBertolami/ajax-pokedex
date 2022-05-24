@@ -18,8 +18,9 @@ function displayEvolution(data2){
     try {
         const evolve1 = data2.chain.evolves_to[0].species.name;
         const evolve2 = data2.chain.evolves_to[1].species.name;
-        alert(evolve1);
-        alert(evolve2);
+        // console log all you want, it's not yet working
+        console.log(evolve1);
+        console.log(evolve2);
     } catch (err) {
         // error handling
     }
