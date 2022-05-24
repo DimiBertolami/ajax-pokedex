@@ -4,12 +4,11 @@ document.getElementById("searchButton").addEventListener("click", function () {
     console.log(bodyRef);
     console.log(table);
     bodyRef.innerHTML = '';
-    // replaceTable();
-    // document.getElementById("abilities").innerHTML = "";
-    // document.getElementById("moves").innerHTML = "";
     getName(document.getElementById("Name").value);
 });
-
+document.getElementById("NewSearch").addEventListener("click", function () {
+    location.reload();
+})
 function displayPokemon(data) {
     const pokemonImg = data.sprites.front_default;
     const pokemonID = data.id;
