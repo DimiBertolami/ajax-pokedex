@@ -8,10 +8,10 @@ document.getElementById("searchButton").addEventListener("click", function () {
     bodyRef.innerHTML = '';
     if(action==="go"){
         getName(document.getElementById("Name").value);
-        document.getElementById("searchButton").textContent = "Reload";
+        document.getElementById("searchButton").textContent = "New Search";
         action="reload";
     } else {
-        document.getElementById("searchButton").textContent = "Go";
+        document.getElementById("searchButton").textContent = "Search Pokedex";
         action="go";
         location.reload();
     }
