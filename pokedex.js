@@ -5,8 +5,8 @@ document.getElementById("searchButton").addEventListener("click", function () {
     console.log(table);
     bodyRef.innerHTML = '';
     // replaceTable();
-    document.getElementById("abilities").innerHTML = "";
-    document.getElementById("moves").innerHTML = "";
+    // document.getElementById("abilities").innerHTML = "";
+    // document.getElementById("moves").innerHTML = "";
     getName(document.getElementById("Name").value);
 });
 
@@ -19,28 +19,33 @@ function displayPokemon(data) {
 
     document.getElementById("image").src = pokemonImg;
     let table = document.getElementById("poketable");
-    let bodyRefByTag = table.getElementsByClassName('table table-hover')[0];
+    let bodyRefByTag = table.getElementsByTagName('tbody')[0];
     console.log(bodyRefByTag);
     let body = table.createTBody();
     let row = body.insertRow();
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-
     console.log(abilities.length + " " + moves.length);
     const arrLongest = (abilities.length > moves.length) ? abilities.length : moves.length;
-    cell1.innerHTML = `${pokemonID} (${pokemonName})`;
     for (let i = 0; i < arrLongest; i++) {
         row = body.insertRow();
-        cell1 = row.insertCell(0);
-        cell2 = row.insertCell(1);
-        cell3 = row.insertCell(2);
-        cell4 = row.insertCell(3);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        try {
+            if(i>0){
+                console.log(`${pokemonName}`);
+                cell1.innerHTML = `${pokemonName}`;
+            } else {
+                console.log(`${pokemonID}`);
+                cell1.innerHTML = `${pokemonID}`;
+            }
+        } catch (err) {
+            // error handling
+        }
         try {
             let ability = abilities[i].ability.name;
             console.log(i);
-            console.log(`ability: (${ability})`);
+            console.log(`${i}) ability: (${ability})`);
             cell2.innerHTML = ability;
         } catch (err) {
             // error handling
@@ -54,14 +59,6 @@ function displayPokemon(data) {
             // error handling
         }
     }
-}
-
-function DisplayData(elementID, data, dataFlush = true) {
-    // if(dataFlush){document.getElementById(elementID).innerHTML = ""}
-    let element = document.getElementById(elementID);
-    h1 = document.createElement("h1");
-    h1.innerHTML = data;
-    element.appendChild(h1);
 }
 
 function getName(name = "pikachu") {
