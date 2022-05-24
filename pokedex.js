@@ -1,5 +1,9 @@
 
 document.getElementById("searchButton").addEventListener("click", function () {
+    let table = document.getElementById("poketable");
+    let bodyRef = table.getElementsByTagName('tbody')[0];
+    console.log(bodyRef);
+    bodyRef.innerHTML = '';
     document.getElementById("abilities").innerHTML = "";
     document.getElementById("moves").innerHTML = "";
     getName(document.getElementById("Name").value);
@@ -40,13 +44,37 @@ function displayPokemon(data) {
 function addRowData(cell, cellData) {
     let table = document.getElementById("poketable");
     let bodyRef = table.getElementsByTagName('tbody')[0];
-    bodyRef.innerHTML = '';
+    // bodyRef.innerHTML = '';
     let header = table.createTHead();
-    let row = header.insertRow(-1);
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
+    row = header.insertRow(0);
+    // cell1 = row.insertCell(0);
+    // cell2 = row.insertCell(1);
+    // cell3 = row.insertCell(2);
+    // cell4 = row.insertCell(3);
+    // cell1.innerHTML = "ID";
+    // cell2.innerHTML = "abilities";
+    // cell3.innerHTML = "moves";
+    // cell4.innerHTML = "evolution";
+    footer = table.createTFoot();
+    // row = footer.insertRow(0);
+    // cell1 = row.insertCell(0);
+    // cell2 = row.insertCell(1);
+    // cell3 = row.insertCell(2);
+    // cell4 = row.insertCell(3);
+    // cell1.innerHTML = "ID";
+    // cell2.innerHTML = "abilities";
+    // cell3.innerHTML = "moves";
+    // cell4.innerHTML = "evolution";
+    body = table.createTBody();
+    row = body.insertRow(-1);
+    cell1 = row.insertCell(0);
+    cell2 = row.insertCell(1);
+    cell3 = row.insertCell(2);
+    cell4 = row.insertCell(3);
+    cell1.innerHTML = "ID";
+    cell2.innerHTML = "abilities";
+    cell3.innerHTML = "moves";
+    cell4.innerHTML = "evolution";
     if(cell==="cell1"){
 
     }
@@ -85,7 +113,11 @@ function addRowData(cell, cellData) {
             cell4.innerHTML = "";
             break;
     }
+    table.appendChild(header);
+    table.appendChild(body);
+    table.appendChild(footer);
 }
+
 
 function DisplayData(elementID, data, dataFlush = true) {
     // if(dataFlush){document.getElementById(elementID).innerHTML = ""}
