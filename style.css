@@ -1,14 +1,17 @@
 body{
     height:100%;
     background-color:red;
-    display: flex;
+    display: flex-column;
     justify-content: center;
     align-items: center;
 }
+input{
+    background-color: lightskyblue;
+}
 .child-to-body{
-    width: 400px;
-    height: 400px;
-    flex-shrink: 2;
+    width: 60%;
+    height: 100%;
+    flex-shrink: 5;
     background-color: red;
 }
 .poke_box{
@@ -20,9 +23,10 @@ body{
     transform: translate(-50%,-50%);
 }
 .pokeball{
-    position: relative;
+    position: absolute;
     width: 150px;
     height: 150px;
+    left: 30%;
     background: #fff;
     border: 5px solid #000;
     border-radius: 50%;
@@ -37,10 +41,10 @@ body{
 
 @keyframes shake {
 0 { transform: translate(0, 0) rotate(0); }
-20% { transform: translate(-10px, 0) rotate(-20deg); }
-30% { transform: translate(10px, 0) rotate(20deg); }
-50% { transform: translate(-10px, 0) rotate(-10deg); }
-60% { transform: translate(10px, 0) rotate(10deg); }
+20% { transform: translate(-5px, 0) rotate(-10deg); }
+30% { transform: translate(5px, 0) rotate(10deg); }
+50% { transform: translate(-5px, 0) rotate(-5deg); }
+60% { transform: translate(5px, 0) rotate(5deg); }
 100% { transform: translate(0, 0) rotate(0); }
 }
 .pokeball::before,
@@ -85,9 +89,32 @@ body{
     to { background: #e74c3c; }
 }
 
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.flex-item-left {
+    flex: 50%;
+}
+
+.flex-item-right {
+    flex: 50%;
+}
+
+/* Responsive layout - makes a one column layout (100%) instead of a two-column layout (50%) */
+@media (max-width: 800px) {
+    .flex-item-right, .flex-item-left {
+        flex: 100%;
+    }
+}
 table{
     /*justify-content: right;*/
     /*align-items: center;*/
+    /*position: absolute;*/
+    /*left: 30px;*/
+    position: page;
+    bottom: 0;
+    right: 0;
     background-color: lightskyblue;
 }

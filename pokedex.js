@@ -8,20 +8,13 @@ document.getElementById("pokeball__button").addEventListener("click", function (
     bodyRef.innerHTML = '';
     if(action==="go"){
         getName(document.getElementById("Name").value);
-        // document.getElementById("searchButton").textContent = "New Search";
         action="reload";
     } else {
-        // document.getElementById("searchButton").textContent = "Search Pokedex";
         action="go";
         location.reload();
     }
-    // document.getElementById("searchButton").disabled = true;
-    // document.getElementById("NewSearch").disabled = false;
 });
-// document.getElementById("NewSearch").addEventListener("click", function () {
-//     document.getElementById("searchButton").disabled = false;
-//     document.getElementById("NewSearch").disabled = true;
-// })
+
 function displayPokemon(data) {
     const pokemonImg = data.sprites.front_default;
     const pokemonID = data.id;
