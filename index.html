@@ -19,13 +19,13 @@
 <table class="table table-hover" id="poketable">
     <thead>
     <tr>
-        <th scope="col">#(ID)</th>
+        <th scope="col">#(ID+Name)</th>
         <th scope="col">abilities</th>
         <th scope="col">moves</th>
         <th scope="col">previous Evolution</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="tableBody">
     <tr>
         <th scope="row">
             <!--            <label for="id">Pokemon ID:</label>-->
@@ -34,12 +34,18 @@
         <td>
             <!--            <label for="pokemonName" hidden>Name:</label>-->
         </td>
-        <td>
-        </td>
-        <td>
-        </td>
+        <td></td>
+        <td></td>
     </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <th scope="col">#(ID)</th>
+            <th scope="col">abilities</th>
+            <th scope="col">moves</th>
+            <th scope="col">previous Evolution</th>
+        </tr>
+    </tfoot>
 </table>
 
 <label for="id">id</label><div id="id"></div>

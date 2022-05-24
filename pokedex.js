@@ -1,9 +1,10 @@
-
 document.getElementById("searchButton").addEventListener("click", function () {
     let table = document.getElementById("poketable");
     let bodyRef = table.getElementsByTagName('tbody')[0];
     console.log(bodyRef);
+    console.log(table);
     bodyRef.innerHTML = '';
+    // replaceTable();
     document.getElementById("abilities").innerHTML = "";
     document.getElementById("moves").innerHTML = "";
     getName(document.getElementById("Name").value);
@@ -17,107 +18,43 @@ function displayPokemon(data) {
     const moves = data.moves;
 
     document.getElementById("image").src = pokemonImg;
-    // DisplayData("id", pokemonID);
-    addRowData("cell1", pokemonID);
+    let table = document.getElementById("poketable");
+    let bodyRefByTag = table.getElementsByClassName('table table-hover')[0];
+    console.log(bodyRefByTag);
+    let body = table.createTBody();
+    let row = body.insertRow();
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
 
     console.log(abilities.length + " " + moves.length);
-    // loopAbilities;
-    for (let i = 0; i < abilities.length; i++) {
-        let ability = abilities[i].ability.name;
-        console.log(i);
-        console.log(ability);
-
-        // DisplayData("abilities", ability, false);
-        addRowData("cell2", ability);
-
-    }
-    // loopmoves;
-    for (let i = 0; i < moves.length; i++) {
-        let move = moves[i].move.name;
-        console.log(i);
-        console.log(move);
-        // DisplayData("moves", move, false);
-        addRowData("cell3", move);
+    const arrLongest = (abilities.length > moves.length) ? abilities.length : moves.length;
+    cell1.innerHTML = `${pokemonID} (${pokemonName})`;
+    for (let i = 0; i < arrLongest; i++) {
+        row = body.insertRow();
+        cell1 = row.insertCell(0);
+        cell2 = row.insertCell(1);
+        cell3 = row.insertCell(2);
+        cell4 = row.insertCell(3);
+        try {
+            let ability = abilities[i].ability.name;
+            console.log(i);
+            console.log(`ability: (${ability})`);
+            cell2.innerHTML = ability;
+        } catch (err) {
+            // error handling
+        }
+        try {
+            let move = moves[i].move.name;
+            console.log(i);
+            console.log(`move: (${move})`);
+            cell3.innerHTML = move;
+        } catch (err) {
+            // error handling
+        }
     }
 }
-
-function addRowData(cell, cellData) {
-    let table = document.getElementById("poketable");
-    let bodyRef = table.getElementsByTagName('tbody')[0];
-    // bodyRef.innerHTML = '';
-    let header = table.createTHead();
-    row = header.insertRow(0);
-    // cell1 = row.insertCell(0);
-    // cell2 = row.insertCell(1);
-    // cell3 = row.insertCell(2);
-    // cell4 = row.insertCell(3);
-    // cell1.innerHTML = "ID";
-    // cell2.innerHTML = "abilities";
-    // cell3.innerHTML = "moves";
-    // cell4.innerHTML = "evolution";
-    footer = table.createTFoot();
-    // row = footer.insertRow(0);
-    // cell1 = row.insertCell(0);
-    // cell2 = row.insertCell(1);
-    // cell3 = row.insertCell(2);
-    // cell4 = row.insertCell(3);
-    // cell1.innerHTML = "ID";
-    // cell2.innerHTML = "abilities";
-    // cell3.innerHTML = "moves";
-    // cell4.innerHTML = "evolution";
-    body = table.createTBody();
-    row = body.insertRow(-1);
-    cell1 = row.insertCell(0);
-    cell2 = row.insertCell(1);
-    cell3 = row.insertCell(2);
-    cell4 = row.insertCell(3);
-    cell1.innerHTML = "ID";
-    cell2.innerHTML = "abilities";
-    cell3.innerHTML = "moves";
-    cell4.innerHTML = "evolution";
-    if(cell==="cell1"){
-
-    }
-    if(cell==="cell2"){
-
-    }
-    if(cell==="cell3"){
-
-    }
-    if(cell==="cell4"){
-
-    }
-    switch (cell){
-        case "cell1":
-            cell1.innerHTML = cellData;
-            cell2.innerHTML = "";
-            cell3.innerHTML = "";
-            cell4.innerHTML = "";
-            break;
-        case "cell2":
-            cell1.innerHTML = "";
-            cell2.innerHTML = cellData;
-            cell3.innerHTML = "";
-            cell4.innerHTML = "";
-            break;
-        case "cell3":
-            cell1.innerHTML = "";
-            cell2.innerHTML = "";
-            cell3.innerHTML = cellData;
-            cell4.innerHTML = "";
-            break;
-        case "cell4":
-            cell1.innerHTML = "";
-            cell2.innerHTML = "";
-            cell3.innerHTML = "";
-            cell4.innerHTML = "";
-            break;
-    }
-    table.appendChild(header);
-    table.appendChild(body);
-    table.appendChild(footer);
-}
-
 
 function DisplayData(elementID, data, dataFlush = true) {
     // if(dataFlush){document.getElementById(elementID).innerHTML = ""}
@@ -140,5 +77,6 @@ function getName(name = "pikachu") {
             console.log(data);
             displayPokemon(data);
         })
+        // .catch((error) => console.error("FETCH ERROR:", error));
         .catch((error) => console.error("FETCH ERROR:", error));
 }
