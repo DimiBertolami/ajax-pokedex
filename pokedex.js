@@ -1,6 +1,6 @@
 let action = "go";
 
-document.getElementById("searchButton").addEventListener("click", function () {
+document.getElementById("pokeball__button").addEventListener("click", function () {
     let table = document.getElementById("poketable");
     let bodyRef = table.getElementsByTagName('tbody')[0];
     console.log(bodyRef);
@@ -8,10 +8,10 @@ document.getElementById("searchButton").addEventListener("click", function () {
     bodyRef.innerHTML = '';
     if(action==="go"){
         getName(document.getElementById("Name").value);
-        document.getElementById("searchButton").textContent = "New Search";
+        // document.getElementById("searchButton").textContent = "New Search";
         action="reload";
     } else {
-        document.getElementById("searchButton").textContent = "Search Pokedex";
+        // document.getElementById("searchButton").textContent = "Search Pokedex";
         action="go";
         location.reload();
     }
