@@ -5,8 +5,12 @@ document.getElementById("searchButton").addEventListener("click", function () {
     console.log(table);
     bodyRef.innerHTML = '';
     getName(document.getElementById("Name").value);
+    document.getElementById("searchButton").disabled = true;
+    document.getElementById("NewSearch").disabled = false;
 });
 document.getElementById("NewSearch").addEventListener("click", function () {
+    document.getElementById("searchButton").disabled = false;
+    document.getElementById("NewSearch").disabled = true;
     location.reload();
 })
 function displayPokemon(data) {
