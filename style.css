@@ -20,6 +20,17 @@ body{
 input{
     background-color: lightskyblue;
 }
+div{
+    position: absolute;
+    background-color: yellowgreen;
+
+}
+label{
+    position: absolute;
+    background-color: orangered;
+    left: 10px;
+    top: -10px;
+}
 .child-to-body{
     width: 60%;
     height: 100%;

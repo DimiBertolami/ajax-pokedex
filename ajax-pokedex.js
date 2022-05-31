@@ -1,69 +1,54 @@
-let action = "go";
-
-document.getElementById("pokeball__button").addEventListener("click", () => {
-    if (action === "go") {
-        action = "reload";
-        document.getElementById("pokeball__button").innerHTML = "Go";
-        getData(document.getElementById("Name").value);
-    } else {
-        action = "go";
-        location.reload();
-    }
-});
-
-async function getData(name) {
-    const table = document.getElementById("poketable");
-    // const tBody = document.getElementById("tableBody");
-    // tBody.innerHTML = "";
+async function getData(name){
     // url = getPokemon(document.getElementById('Name').value);
     let promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     let pokemon = await promise.json();
+    console.log(pokemon);
     console.log(pokemon.species.url);
-    const pokemonID = pokemon.id;
-    const sprites = pokemon.sprites;
-    const abilities = pokemon.abilities;
-    const moves = pokemon.moves;
-    const arrLongest = (abilities.length > moves.length) ? abilities.length : moves.length;
-    // console.log(`the largest array is ${arrLongest}`);
-    const body = table.createTBody();
-    const row = body.insertRow();
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    const cell3 = row.insertCell(2);
-    cell1.innerHTML = "";
-    cell2.innerHTML = "";
-    cell3.innerHTML = "";
+    pokemonID = pokemon.id;
+    DisplayData("id", `${pokemonID})  ${pokemon.name}`);
 
-    for (let i = 0; i < arrLongest; i++) {
-        row = body.insertRow();
-        cell1 = row.insertCell(0);
-        cell2 = row.insertCell(1);
-        cell3 = row.insertCell(2);
-        try {
-            cell1.innerHTML = `${pokemonID} ${pokemonName}`;
-            cell2.innerHTML = `${abilities[i].ability.name}`;
-            cell3.innerHTML = `${moves[i].move.name}`;
-            console.log("cells adjusted");
-        } catch (err) {
-            console.error(err);
-        }
+    document.getElementById("abilities").innerHTML = "";
+    document.getElementById("moves").innerHTML = "";
+    try {
+        let ability = abilities[i].ability.name;
+        console.log(i);
+        console.log(`${i}) ability: (${ability})`);
+        // cell2.innerHTML = ability;
+        DisplayData("abilities", `${ability}`, false);
+    } catch (err) {
+        console.error(err);
     }
-    document.getElementById("table").appendChild(body);
-    document.getElementById("target").appendChild(table);
-    // get the species' url;
+    try {
+        let move = moves[i].move.name;
+        console.log(i);
+        console.log(`move: (${move})`);
+        // cell3.innerHTML = move;
+        DisplayData("moves", `${move}`, false);
+    } catch (err) {
+        console.error(err);
+    }
+
+    // ID = getSpeciesID(url);
     let promise2 = await fetch(`${pokemon.species.url}`);
     let speciesURL = await promise2.json();
+    console.log(speciesURL);
+    // return ;
+    console.log(speciesURL.evolution_chain.url);
+    // chain = getEvolutionChain(ID);
     let promise3 = await fetch(`${speciesURL.evolution_chain.url}`);
     let evolution = await promise3.json();
-    document.getElementById("target").innerHTML = "";
+    console.log(evolution);
+    // return evolution;
+    // document.getElementById("target").innerHTML = "";
 
-    // Loop through evolution data;
+    // LoopThroughEvolution(data);  chain.evolves_to[3].species chain.evolves_to[0].species.name
+
     if (name === "eevee") {
         for (let i = 0; i < evolution.chain.evolves_to.length; i++) {
             let promise4 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution.chain.evolves_to[i].species.name}`);
             let evoIMG1 = await promise4.json();
             let sprites = evoIMG1.sprites;
-            let img = sprites.front_shiny;
+            let img = sprites.front_default;
             let imgTemp = document.createElement("img");
             imgTemp.src = img;
             imgTemp.alt = "image " + i;
@@ -72,19 +57,19 @@ async function getData(name) {
             imgTemp.title = `${evolution.chain.evolves_to[i].species.name}`;
             imgTemp.id = `${evolution.chain.evolves_to[i].species.name}`;
             document.getElementById("target").appendChild(imgTemp);
-        } //for..
-    } else { //name is not eevee!
-        // 0 = baby phase
+        }
+    } else {
+        // 0 = baby
         let promise5 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution.chain.species.name}`);
         let evoIMG2 = await promise5.json();
         let sprites2 = evoIMG2.sprites;
-        let img2 = sprites2.front_shiny;
+        let img2 = sprites2.front_default;
         let imgTemp2 = document.createElement("img");
         imgTemp2.src = img2;
-        imgTemp2.alt = "baby phase";
+        imgTemp2.alt = "baby";
         imgTemp2.width = 250;
         imgTemp2.height = 250;
-        imgTemp2.id = "baby_phase";
+        imgTemp2.id = "baby";
         imgTemp2.title = `${evolution.chain.species.name}`;
         document.getElementById("target").appendChild(imgTemp2);
 
@@ -92,7 +77,7 @@ async function getData(name) {
         let promise6 = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolution.chain.evolves_to[0].species.name}`);
         let evoIMG3 = await promise6.json();
         let sprites3 = evoIMG3.sprites;
-        let img3 = sprites3.front_shiny;
+        let img3 = sprites3.front_default;
         let imgTemp3 = document.createElement("img");
         imgTemp3.src = img3;
         imgTemp3.alt = "level1";
@@ -117,3 +102,16 @@ async function getData(name) {
         document.getElementById("target").appendChild(imgTemp4);
     }
 }
+
+function DisplayData(elementID, data, dataFlush = true) {
+    // if(dataFlush){document.getElementById(elementID).innerHTML = ""}
+    let element = document.getElementById(elementID);
+    h1 = document.createElement("h1");
+    h1.innerHTML = data;
+    element.appendChild(h1);
+}
+
+document.getElementById('pokeball__button').addEventListener('click', () => {
+    getData(document.getElementById("Name").value);
+});
+
