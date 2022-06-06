@@ -17,6 +17,21 @@ div{
     background-color: yellowgreen;
 
 }
+#id{
+    position: absolute;
+    top: 500px;
+    left:600px;
+}
+#abilities{
+    position: absolute;
+    top: 540px;
+    left:600px;
+}
+#moves{
+    top: 780px;
+    left:600px;
+    position: absolute;
+}
 label{
     position: absolute;
     background-color: orangered;

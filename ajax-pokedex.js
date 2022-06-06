@@ -2,35 +2,56 @@ async function getData(name){
     // url = getPokemon(document.getElementById('Name').value);
     let promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     let pokemon = await promise.json();
+    str = '';
     console.log(pokemon);
     console.log(pokemon.species.url);
     pokemonID = pokemon.id;
+    pokemonName = pokemon.name;
     DisplayData("id", `${pokemonID})  ${pokemon.name}`);
-
     document.getElementById("abilities").innerHTML = "";
     document.getElementById("moves").innerHTML = "";
+    str = `${pokemonName} (ID:${pokemonID}): `;
+    // console.log(str);
     try {
-        let ability = abilities[i].ability.name;
-        console.log(i);
-        console.log(`${i}) ability: (${ability})`);
-        // cell2.innerHTML = ability;
-        DisplayData("abilities", `${ability}`, false);
-    } catch (err) {
-        console.error(err);
+        // if (i=0,i<4,i++){
+        for (let i = 0; i < 4; i++) {
+            let ability = pokemon.abilities[i].ability.name;
+            // console.log(i);
+            // alert(`ability: ${ability}`);
+            // cell2.innerHTML = ability;
+            DisplayData("abilities", `ability: ${ability}`, false);
+            // str = str & `${ability}, `;
+            // console.log(str);
+        }
+        // }
+
+    } catch {
+        // console.error(err);
     }
-    try {
-        let move = moves[i].move.name;
-        console.log(i);
-        console.log(`move: (${move})`);
-        // cell3.innerHTML = move;
-        DisplayData("moves", `${move}`, false);
-    } catch (err) {
-        console.error(err);
-    }
+    // console.log(str);
+
+    // try {
+        // if (i=0,i<4,i++){
+        for (let j = 0; j < 4; j++) {
+            let move = pokemon.moves[j].move.name;
+            // console.log(i);
+            // alert(`move: (${move})`);
+            // cell3.innerHTML = move;
+            DisplayData("moves", `move: ${move}`, true);
+            str = str &`${move}, `;
+
+        }
+        // }
+
+    // } catch (err) {
+        // console.error(err);
+    // }
+    // console.log(str);
 
     // ID = getSpeciesID(url);
     let promise2 = await fetch(`${pokemon.species.url}`);
     let speciesURL = await promise2.json();
+    // console.log(str);
     console.log(speciesURL);
     // return ;
     console.log(speciesURL.evolution_chain.url);
