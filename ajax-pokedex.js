@@ -127,9 +127,9 @@ async function getData(name){
 function DisplayData(elementID, data, dataFlush = true) {
     // if(dataFlush){document.getElementById(elementID).innerHTML = ""}
     let element = document.getElementById(elementID);
-    h1 = document.createElement("h1");
-    h1.innerHTML = data;
-    element.appendChild(h1);
+    h4 = document.createElement("h4");
+    h4.innerHTML = data;
+    element.appendChild(h4);
 }
 
 document.getElementById('pokeball__button').addEventListener('click', () => {
