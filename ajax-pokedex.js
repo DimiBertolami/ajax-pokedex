@@ -3,8 +3,8 @@ async function getData(name){
     let promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     let pokemon = await promise.json();
     str = '';
-    console.log(pokemon);
-    console.log(pokemon.species.url);
+    // console.log(pokemon);
+    // console.log(pokemon.species.url);
     pokemonID = pokemon.id;
     pokemonName = pokemon.name;
     DisplayData("id", `${pokemonID})  ${pokemon.name}`);
@@ -14,7 +14,7 @@ async function getData(name){
     // console.log(str);
     try {
         // if (i=0,i<4,i++){
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < pokemon.abilities.length; i++) {
             let ability = pokemon.abilities[i].ability.name;
             // console.log(i);
             // alert(`ability: ${ability}`);
@@ -32,7 +32,7 @@ async function getData(name){
 
     // try {
         // if (i=0,i<4,i++){
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < pokemon.moves.length; j++) {
             let move = pokemon.moves[j].move.name;
             // console.log(i);
             // alert(`move: (${move})`);
