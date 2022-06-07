@@ -1,35 +1,37 @@
-body{
-    height:30%;
+*{
+    /*height:750px;*/
+    /*width: 1900px;*/
+    top: 70%;
     background-color:red;
     color: yellow;
     display: flex-column;
     justify-content: center;
     align-items: center;
-    opacity: 80%;
+    opacity: 100%;
 }
 input{
     background-color: yellow;
     color: blue;
     font-style: oblique;
-    font-size: large;
-    width: 40%;
+    font-size: x-large;
+    width: 30%;
 }
 div{
     position: absolute;
-    background-color: yellowgreen;
+    background-color: red;
 
 }
 #id{
     position: absolute;
     font-size: xx-small;
-    top: 50px;
-    left:50px;
+    top: 10px;
+    left:550px;
 }
 #abilities{
     position: absolute;
     font-size: xx-small;
-    top: 75px;
-    left:50px;
+    top: 10px;
+    left:550px;
 }
 #moves{
     top: 95px;
@@ -54,7 +56,7 @@ label{
 .poke_box{
     position: relative;
     background-color: red;
-    top: 50%;
+    top: 90%;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
